@@ -2,7 +2,7 @@ package com.dreamsource.taskmanager;
 
 import com.dreamsource.taskmanager.exceptions.TaskNotFoundException;
 import com.dreamsource.taskmanager.task.Task;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,15 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping(path = "api/v1/tasks")
 public class TaskController {
 
     private final TaskService taskService;
-
-    @Autowired
-    public TaskController(TaskService taskService) {
-        this.taskService = taskService;
-    }
 
     @GetMapping("/")
     public ResponseEntity<List<Task>> getTasks() {
